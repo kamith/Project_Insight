@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray">#656565</color>
+    <color name="grayedOut">#99BBFF</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="workingDeuteranopiaColor1">#303F9F</color>
+    <color name="workingProtanopiaColor">#303F9F</color>
+    <color name="completedDeuteranopiaColor">#FF4786</color>
+    <color name="workingRegularColor">#DA0000</color>
+    <color name="completedTritanopiaColor">#DA0000</color>
+    <color name="completedRegularColor">#00C600</color>
+    <color name="workingTritanopiaColor">#00C600</color>
+    <color name="yellow1">#ffffcc</color>
+    <color name="yellow2">#FFFF00</color>
+    <color name="completedProtanopiaColor">#FFFF00</color>
+    <color name="workingDeuteranopiaColor2">#FFFF00</color>
+    <color name="orange1">#FFAC30</color>
+    <color name="orange2">#FF5722</color>
+    <color name="blue1">#6699ff</color>
+    <color name="blue2">#0000ff</color>
+    // attributes
+    <attr name="startColor" format="color"/>
+    <attr name="endColor" format="color"/>
+</resources>
