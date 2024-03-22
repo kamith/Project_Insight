@@ -112,8 +112,8 @@ public class MainActivity extends Activity {
     private ObjectAnimator progressAnimator;
 
     private String latestImagePath = null;
-
     private String base64Image = null;
+    private TextToSpeech tts;
     private final String OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
 
     /**
@@ -147,6 +147,26 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
         buttonOpenAIApi = findViewById(R.id.btn_openai_api);
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    // Set the TTS language
+                    int result = tts.setLanguage(Locale.US);
+
+                    // Check if the language data is missing or the language is not supported.
+                    if (result != TextToSpeech.LANG_MISSING_DATA && result != TextToSpeech.LANG_NOT_SUPPORTED) {
+                        // Speak a text once the TTS engine is successfully initialized
+                        tts.speak("TTS Enabled", TextToSpeech.QUEUE_FLUSH, null, "TTS1");
+                    } else {
+                        Log.e("TTS", "This Language is not supported");
+                    }
+                } else {
+                    Log.e("TTS", "Initialization Failed!");
+                }
+            }
+        });
+
 
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
         setupButtonListeners();
@@ -255,7 +275,7 @@ public class MainActivity extends Activity {
     }
 
     void OnMealPrompt(){
-        OnOpenAIApiClick("Give me a sample meal with an appetizer, entree and salard, also a dessert if there is one, include total cost. Be brief and short");
+        OnOpenAIApiClick("Give me a sample meal with an appetizer, entree and salad, also a dessert if there is one, include total cost. Be brief and short");
     }
     void OnDrinkPrompt(){
         OnOpenAIApiClick("Give me a few drink options on the menu if you can find, be brief and short, if not say no drinks listed");
@@ -376,6 +396,7 @@ public class MainActivity extends Activity {
                         String content = messageObject.getString("content");
 
                         Log.i(LOG_TAG, "Extracted Content: " + content);
+                        tts.speak(content.toString(), TextToSpeech.QUEUE_FLUSH, null, "TTS1");
                     } else {
                         Log.i(LOG_TAG, "No content found in response");
                     }
